@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server part of the aphrodite.ai project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Astatium5/aphrodite-ai.git"
+  },
+  "keywords": [
+    "node.js",
+    "express.js",
+    "mongodb"
+  ],
+  "author": "Dmitrii Golubenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Astatium5/aphrodite-ai/issues"
+  },
+  "homepage": "https://github.com/Astatium5/aphrodite-ai#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.4"
+  }
+}
