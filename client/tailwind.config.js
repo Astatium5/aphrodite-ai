@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: (theme) => ({
-        "rose-light": "#FFF9F9",
-        rose: "#F8EFEF",
+        "rose-light": "#FEF2F2",
+        rose: "#FDDEDE",
         button: "#AB65B8",
       }),
     },
