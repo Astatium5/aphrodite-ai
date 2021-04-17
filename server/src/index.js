@@ -1,13 +1,7 @@
-import express from 'express';
-import router from './routes';
+import setup from './services/serverSetUp.js';
 
 (async function main() {
-  const app = express();
-
-  app.use(
-    router,
-    express.json(),
-  );
+  const app = await setup();
 
   app.listen(5000);
 }());

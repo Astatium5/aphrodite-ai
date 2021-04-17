@@ -1,5 +1,5 @@
-import UserModel from '../models/user';
-import Hasher from '../services/hasher';
+import UserModel from '../models/user.js';
+import Hasher from '../services/hasher.js';
 
 const User = {
   register: async (req, res) => {

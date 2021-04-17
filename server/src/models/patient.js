@@ -8,4 +8,4 @@ const photoSchema = new mongoose.Schema({
   cancer: Boolean,
 });
 
-export default Patient;
+export default photoSchema;

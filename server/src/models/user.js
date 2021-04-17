@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Patient from './patient';
+import Patient from './patient.js';
 
 const modelName = 'User';
 

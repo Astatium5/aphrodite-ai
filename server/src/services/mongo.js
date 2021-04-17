@@ -1,8 +1,13 @@
 import mongoose from 'mongoose';
 
 const connectToDB = async () => {
+  const connectionOptions = {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  };
+
   try {
-    await mongoose.connect('mongodb://localhost:27017/myapp', { useNewUrlParser: true });
+    await mongoose.connect('mongodb://localhost:27017/db', connectionOptions);
   } catch (error) {
     throw new Error(error);
   }

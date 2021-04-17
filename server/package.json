@@ -5,10 +5,12 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --exec node src/index.js",
+    "start": "nodemon --exec babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/node": "^7.13.13",
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "mongoose": "^5.12.4",
