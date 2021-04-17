@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   lastName: String,
   email: { type: String, unique: true },
   password: String,
-  patients: [Patient]
+  patients: [Patient],
 });
 
 const User = mongoose.model(modelName, userSchema);

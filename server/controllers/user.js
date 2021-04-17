@@ -1,9 +1,66 @@
+import UserModel from '../models/user';
+import Hasher from '../services/hasher';
+
 const User = {
   register: async (req, res) => {
-    
+    const {
+      firstName, lastName, email, password,
+    } = req.body;
+
+    const hash = Hasher.hash(password);
+
+    const newUser = new UserModel({
+      firstName,
+      lastName,
+      email,
+      password: hash,
+    });
+
+    let user;
+    try {
+      user = await newUser.save();
+    } catch (err) {
+      if (err.code === 11000) {
+        return res.status(409).send({
+          error: 'Email already taken',
+        });
+      }
+
+      return res.status(500).send({
+        error: 'Internal error',
+      });
+    }
+
+    const userRemovedPassword = user.toJSON();
+    delete userRemovedPassword.password;
+
+    return res.status(201).send(userRemovedPassword);
   },
 
-  login: async (req, res, next) => {
+  login: async (req, res) => {
+    let user;
 
+    try {
+      user = (await UserModel.findOne({
+        email: req.body.email,
+      }, '+password').exec());
+    } catch (err) {
+      return res.status(500).send({
+        error: 'Internal error',
+      });
+    }
+
+    if (!user || !await Hasher.validateHash(req.body.password, user.password)) {
+      return res.status(401).send({
+        error: 'Incorrect credentials',
+      });
+    }
+
+    user = user.toJSON();
+    delete user.password;
+
+    return res.status(200).send(user);
   },
-}
+};
+
+export default User;
