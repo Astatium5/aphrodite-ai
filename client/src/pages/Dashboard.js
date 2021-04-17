@@ -33,7 +33,11 @@ const Dashboard = (props) => {
           <div className="flex flex-row w-full px-4 mb-1">
             <span className="flex flex-1 flex-row justify-start text-gray-700">
               <div className="inline-flex flex-row hover:text-gray-400 cursor-pointer">
-                <p onClick={() => history.push("/create")}>Add New</p>
+                <p
+                  onClick={() => history.push("/create", props.location.state)}
+                >
+                  Add New
+                </p>
                 <PlusIcon className="w-4" />
               </div>
             </span>

@@ -71,7 +71,7 @@ const SignUp = () => {
             id="password"
             type="password"
             placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value[0])}
           />
         </div>
         <div className="flex flex-row space-x-8 mt-4">
@@ -79,7 +79,7 @@ const SignUp = () => {
             className="bg-button px-6 py-2 rounded-lg text-gray-100"
             onClick={() => handleSignUp(history, name, email, password)}
           >
-            Sign In
+            Sign Up
           </button>
           <p className="px-6 py-2">
             Have an account?{" "}
