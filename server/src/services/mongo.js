@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import pino from 'pino';
 
 const connectToDB = async () => {
   const connectionOptions = {
@@ -15,6 +16,8 @@ const connectToDB = async () => {
   } catch (error) {
     throw new Error(error);
   }
+
+  pino().info('MongoDB is connected.');
 };
 
 const disconnectFromDB = async () => {
