@@ -5,29 +5,8 @@ import axios from "axios";
 import { PlusIcon, ChevronDownIcon } from "@heroicons/react/outline";
 
 const Dashboard = (props) => {
-  const people = [
-    {
-      name: "Abraham Hernandez",
-      age: "86",
-      email: "h.abraham@outlook.com",
-      dateCreated: "04/17/2021",
-    },
-    {
-      name: "Abraham Hernandez",
-      age: "86",
-      email: "h.abraham@outlook2.com",
-      dateCreated: "04/17/2021",
-    },
-    {
-      name: "Abraham Hernandez",
-      age: "86",
-      email: "h.abraham@outlook3.com",
-      dateCreated: "04/17/2021",
-    },
-  ];
-
   const [records, setRecords] = useState([]);
-
+  console.log(props);
   useEffect(() => {
     axios
       .get(
@@ -121,6 +100,7 @@ const Dashboard = (props) => {
                         <button
                           href="#"
                           className="text-indigo-600 hover:text-indigo-900"
+                          onClick={() => history.push("/detail", record)}
                         >
                           View
                         </button>
