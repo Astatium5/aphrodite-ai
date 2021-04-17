@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import { useHistory } from "react-router-dom";
 import { PlusIcon, ChevronDownIcon } from "@heroicons/react/outline";
 
 const Dashboard = (props) => {
@@ -23,6 +24,7 @@ const Dashboard = (props) => {
     },
   ];
   // console.log(props.location.state);
+  const history = useHistory();
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar page={props.location.pathname} />
@@ -31,7 +33,7 @@ const Dashboard = (props) => {
           <div className="flex flex-row w-full px-4 mb-1">
             <span className="flex flex-1 flex-row justify-start text-gray-700">
               <div className="inline-flex flex-row hover:text-gray-400 cursor-pointer">
-                <p>Add New</p>
+                <p onClick={() => history.push("/create")}>Add New</p>
                 <PlusIcon className="w-4" />
               </div>
             </span>
