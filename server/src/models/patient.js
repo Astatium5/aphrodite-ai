@@ -1,11 +1,15 @@
 import mongoose from 'mongoose';
 
-const modelName = 'Photo';
+const modelName = 'Patient';
 
-const photoSchema = new mongoose.Schema({
-  URL: String,
+const PatientSchema = new mongoose.Schema({
+  patientName: String,
+  email: String,
+  age: Number,
+  photoURL: String,
+  creatorId: String,
   dateUploaded: { type: Date, default: new Date() },
-  cancer: Boolean,
+  coordinates: Number,
 });
 
-export default photoSchema;
+export default PatientSchema;

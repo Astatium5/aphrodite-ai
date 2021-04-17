@@ -5,7 +5,7 @@ const patientRouter = express.Router();
 
 patientRouter.post('/create', Patient.create);
 patientRouter.get('/fetchOne', Patient.fetchOne);
-patientRouter.get('/fetchAll', Patient.fetchAll);
+patientRouter.get('/fetchAll', Patient.fetchOne);
 patientRouter.delete('/delete', Patient.delete);
 patientRouter.put('/update', Patient.update);
 patientRouter.post('/uploadImage', Patient.uploadImage);
