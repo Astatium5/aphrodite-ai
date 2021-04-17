@@ -7,7 +7,7 @@ const connectToDB = async () => {
   };
 
   try {
-    await mongoose.connect('mongodb://localhost:27017/db', connectionOptions);
+    await mongoose.connect('mongodb://mongoDB/db', connectionOptions);
   } catch (error) {
     throw new Error(error);
   }
