@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './routes';
+import router from './routes/index';
 
 (async function main() {
   const app = express();
