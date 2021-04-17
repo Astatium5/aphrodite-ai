@@ -19,5 +19,6 @@ services:
         working_dir: /server
         volumes:
             - ./:/server
+            - node_modules:/server/node_modules
         environment:
           MONGO_URI: "mongodb://mongoDB/db"
