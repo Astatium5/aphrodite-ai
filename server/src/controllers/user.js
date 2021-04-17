@@ -7,7 +7,7 @@ const User = {
       firstName, lastName, email, password,
     } = req.body;
 
-    const hash = Hasher.hash(password);
+    const hash = await Hasher.hash(password);
 
     const newUser = new UserModel({
       firstName,
