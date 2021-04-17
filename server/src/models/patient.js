@@ -12,4 +12,6 @@ const PatientSchema = new mongoose.Schema({
   coordinates: Number,
 });
 
-export default PatientSchema;
+const Patient = mongoose.model(modelName, PatientSchema);
+
+export default Patient;
