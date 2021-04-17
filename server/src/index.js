@@ -1,5 +1,5 @@
-import setup from './services/serverSetUp.js';
 import dotenv from 'dotenv';
+import setup from './services/serverSetUp.js';
 
 (async function main() {
   dotenv.config();

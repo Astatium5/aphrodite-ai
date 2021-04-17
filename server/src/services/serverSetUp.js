@@ -1,6 +1,7 @@
 import express from 'express';
 import router from '../routes/index.js';
 import { connectToDB } from './mongo.js';
+import cors from 'cors';
 
 const setUpServer = async () => {
   const app = express();
@@ -8,6 +9,7 @@ const setUpServer = async () => {
   await connectToDB();
 
   app.use(
+    cors(),
     express.json(),
     router,
   );

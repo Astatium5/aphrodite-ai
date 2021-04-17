@@ -6,6 +6,10 @@ const connectToDB = async () => {
     useNewUrlParser: true,
   };
 
+  mongoose.set('useNewUrlParser', true);
+  mongoose.set('useFindAndModify', false);
+  mongoose.set('useCreateIndex', true);
+
   try {
     await mongoose.connect(process.env.MONGO_URI, connectionOptions);
   } catch (error) {
