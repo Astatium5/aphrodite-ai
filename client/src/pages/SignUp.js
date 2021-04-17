@@ -12,7 +12,8 @@ const handleSignUp = async (history, fullName, email, password) => {
       password,
     });
     console.log(res.data);
-    history.push("/dashboard", res.data);
+    localStorage.setItem("token", JSON.stringify(res.data));
+    history.push("/dashboard");
   } catch (e) {
     console.log(e);
   }

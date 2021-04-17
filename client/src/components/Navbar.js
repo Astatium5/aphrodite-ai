@@ -1,11 +1,17 @@
+import { useEffect, useState } from "react";
 import logo from "../assets/navbar_logo.png";
 import { Link } from "react-router-dom";
 import { UserCircleIcon } from "@heroicons/react/outline";
 
 const Navbar = ({ page }) => {
+  const [lc, setLC] = useState({});
+  useEffect(() => {
+    setLC(JSON.parse(localStorage.token));
+  }, []);
+
   return (
     <div className="w-full h-16 bg-rose flex items-center shadow-lg">
-      <Link to="/">
+      <Link to={lc === undefined || lc === null ? "/" : "/dashboard"}>
         <img src={logo} alt="Aphrodite.ai" className="ml-4 w-16 pb-2" />
       </Link>
 

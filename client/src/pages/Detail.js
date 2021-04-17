@@ -3,7 +3,6 @@ import { ChevronLeftIcon } from "@heroicons/react/outline";
 import { useHistory } from "react-router-dom";
 const Detail = (props) => {
   const history = useHistory();
-  console.log(props.location.state);
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar page={props.location.pathname} />

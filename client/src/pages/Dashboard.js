@@ -6,17 +6,14 @@ import { PlusIcon, ChevronDownIcon } from "@heroicons/react/outline";
 
 const Dashboard = (props) => {
   const [records, setRecords] = useState([]);
-  console.log(props);
   useEffect(() => {
+    const lc = JSON.parse(localStorage.token);
     axios
-      .get(
-        `http://localhost:5000/patients/fetchAll/${props.location.state._id}`
-      )
+      .get(`http://localhost:5000/patients/fetchAll/${lc._id}`)
       .then((res) => setRecords(res.data.reverse()))
       .catch((e) => console.log(e));
   }, []);
   const history = useHistory();
-
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar page={props.location.pathname} />
@@ -25,11 +22,7 @@ const Dashboard = (props) => {
           <div className="flex flex-row w-full px-4 mb-1">
             <span className="flex flex-1 flex-row justify-start text-gray-700">
               <div className="inline-flex flex-row hover:text-gray-400 cursor-pointer">
-                <p
-                  onClick={() => history.push("/create", props.location.state)}
-                >
-                  Add New
-                </p>
+                <p onClick={() => history.push("/create")}>Add New</p>
                 <PlusIcon className="w-4" />
               </div>
             </span>
