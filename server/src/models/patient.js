@@ -6,8 +6,9 @@ const PatientSchema = new mongoose.Schema({
   fullName: String,
   email: String,
   photoURL: String,
+  creatorId: String,
   dateUploaded: { type: Date, default: new Date() },
-  coordinates: Number
+  coordinates: Number,
 });
 
 export default PatientSchema;
