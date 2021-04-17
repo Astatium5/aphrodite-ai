@@ -8,7 +8,7 @@ const PatientSchema = new mongoose.Schema({
   age: Number,
   photoURL: String,
   creatorId: String,
-  dateUploaded: { type: Date, default: new Date() },
+  dateUploaded: { type: Date, default: Date.now },
   coordinates: Number,
 });
 
