@@ -25,7 +25,7 @@ const Dashboard = (props) => {
   // console.log(props.location.state);
   return (
     <div className="flex flex-col items-center w-screen h-screen">
-      <Navbar />
+      <Navbar page={props.location.pathname} />
       <div className="my-20 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="flex flex-row w-full px-4 mb-1">
