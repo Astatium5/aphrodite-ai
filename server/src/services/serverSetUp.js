@@ -8,8 +8,8 @@ const setUpServer = async () => {
   await connectToDB();
 
   app.use(
-    router,
     express.json(),
+    router,
   );
 
   return app;
