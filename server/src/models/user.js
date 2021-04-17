@@ -4,8 +4,7 @@ import Patient from './patient.js';
 const modelName = 'User';
 
 const userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
+  fullName: String,
   email: { type: String, unique: true },
   password: String,
   patients: [Patient],

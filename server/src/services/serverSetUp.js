@@ -1,7 +1,7 @@
 import express from 'express';
+import cors from 'cors';
 import router from '../routes/index.js';
 import { connectToDB } from './mongo.js';
-import cors from 'cors';
 
 const setUpServer = async () => {
   const app = express();
