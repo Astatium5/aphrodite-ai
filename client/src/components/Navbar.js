@@ -10,7 +10,7 @@ const Navbar = ({ page }) => {
       </Link>
 
       <div className="flex-1 flex justify-end space-x-8 mr-8">
-        {page === "/dashboard" || page === "/create" ? (
+        {page === "/dashboard" || page === "/create" || page === "/detail" ? (
           <UserCircleIcon className="w-10 text-gray-800 cursor-pointer hover:text-gray-600" />
         ) : (
           <>
