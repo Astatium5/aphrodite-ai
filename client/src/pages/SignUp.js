@@ -1,22 +1,25 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { UserAddIcon } from "@heroicons/react/outline";
 import axios from "axios";
 
-const handleSignUp = async (fullName, email, password) => {
+const handleSignUp = async (history, fullName, email, password) => {
   try {
     const res = await axios.post("http://localhost:5000/users/register", {
       fullName,
       email,
       password,
     });
+    console.log(res.data);
+    history.push("/dashboard", res.data);
   } catch (e) {
     console.log(e);
   }
 };
 
 const SignUp = () => {
+  const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -74,7 +77,7 @@ const SignUp = () => {
         <div className="flex flex-row space-x-8 mt-4">
           <button
             className="bg-button px-6 py-2 rounded-lg text-gray-100"
-            onClick={() => handleSignUp(name, email, password)}
+            onClick={() => handleSignUp(history, name, email, password)}
           >
             Sign In
           </button>

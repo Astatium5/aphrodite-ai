@@ -1,21 +1,24 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { LoginIcon } from "@heroicons/react/outline";
 import axios from "axios";
 
-const handleSignIn = async (email, password) => {
+const handleSignIn = async (history, email, password) => {
   try {
     const res = await axios.post("http://localhost:5000/users/login", {
       email,
       password,
     });
+    console.log(res.data);
+    history.push("/dashboard", res.data);
   } catch (e) {
     console.log(e);
   }
 };
 
 const SignIn = () => {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -56,7 +59,7 @@ const SignIn = () => {
         <div className="flex flex-row space-x-8 mt-4">
           <button
             className="bg-button px-6 py-2 rounded-lg text-gray-100"
-            onClick={() => handleSignIn(email, password)}
+            onClick={() => handleSignIn(history, email, password)}
           >
             Sign In
           </button>
