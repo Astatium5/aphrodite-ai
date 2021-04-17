@@ -5,21 +5,21 @@ const Dashboard = (props) => {
   const people = [
     {
       name: "Abraham Hernandez",
+      age: "86",
       email: "h.abraham@outlook.com",
-      title: "Software Engineer",
-      role: "Frontend Lead",
+      dateCreated: "04/17/2021",
     },
     {
       name: "Abraham Hernandez",
+      age: "86",
       email: "h.abraham@outlook2.com",
-      title: "Software Engineer",
-      role: "Frontend Lead",
+      dateCreated: "04/17/2021",
     },
     {
       name: "Abraham Hernandez",
+      age: "86",
       email: "h.abraham@outlook3.com",
-      title: "Software Engineer",
-      role: "Frontend Lead",
+      dateCreated: "04/17/2021",
     },
   ];
   // console.log(props.location.state);
@@ -56,19 +56,13 @@ const Dashboard = (props) => {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Title
+                    Age
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Status
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Role
+                    Date Created
                   </th>
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">View</span>
@@ -84,7 +78,7 @@ const Dashboard = (props) => {
                     <tr key={person.email}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="ml-4">
+                          <div>
                             <div className="text-sm font-medium text-gray-900">
                               {person.name}
                             </div>
@@ -96,19 +90,13 @@ const Dashboard = (props) => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
-                          {person.title}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          {person.department}
+                          {person.age}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                          Active
+                          {person.dateCreated}
                         </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {person.role}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <button
