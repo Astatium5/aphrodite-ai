@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-import setup from './services/serverSetUp.js';
 import pino from 'pino';
+import setup from './services/serverSetUp.js';
 
 (async function main() {
   dotenv.config();

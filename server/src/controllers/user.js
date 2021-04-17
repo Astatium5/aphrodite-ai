@@ -4,14 +4,13 @@ import Hasher from '../services/hasher.js';
 const User = {
   register: async (req, res) => {
     const {
-      firstName, lastName, email, password,
+      fullName, email, password,
     } = req.body;
 
     const hash = await Hasher.hash(password);
 
     const newUser = new UserModel({
-      firstName,
-      lastName,
+      fullName,
       email,
       password: hash,
     });
