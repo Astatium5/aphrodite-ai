@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import { PlusIcon, ChevronDownIcon } from "@heroicons/react/outline";
 
 const Dashboard = (props) => {
@@ -23,8 +25,19 @@ const Dashboard = (props) => {
       dateCreated: "04/17/2021",
     },
   ];
-  // console.log(props.location.state);
+
+  const [records, setRecords] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:5000/patients/fetchAll/${props.location.state._id}`
+      )
+      .then((res) => setRecords(res.data.reverse()))
+      .catch((e) => console.log(e));
+  }, []);
   const history = useHistory();
+
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar page={props.location.pathname} />
@@ -79,29 +92,29 @@ const Dashboard = (props) => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {people.length > 0 ? (
-                  people.map((person) => (
-                    <tr key={person.email}>
+                {records.length > 0 ? (
+                  records.map((record) => (
+                    <tr key={record._id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div>
                             <div className="text-sm font-medium text-gray-900">
-                              {person.name}
+                              {record.patientName}
                             </div>
                             <div className="text-sm text-gray-500">
-                              {person.email}
+                              {record.email}
                             </div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
-                          {person.age}
+                          {record.age}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                          {person.dateCreated}
+                          {record.dateUploaded.split("T")[0]}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

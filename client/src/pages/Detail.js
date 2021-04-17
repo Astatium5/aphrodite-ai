@@ -23,7 +23,11 @@ const Detail = (props) => {
           <span className="text-gray-500">{props.location.state.email}</span>
         </h2>
 
-        <img src="https://picsum.photos/300/200" className="mt-8" />
+        <img
+          src="https://picsum.photos/300/200"
+          alt="Uploaded"
+          className="mt-8"
+        />
       </div>
     </div>
   );

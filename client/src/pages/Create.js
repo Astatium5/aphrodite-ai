@@ -98,6 +98,7 @@ const Create = (props) => {
           </button>
           <img
             src={image}
+            alt="Preview"
             className={"w-42 h-32 " + (image === null ? "hidden" : "")}
           />
         </div>
