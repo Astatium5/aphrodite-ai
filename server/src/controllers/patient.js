@@ -1,16 +1,13 @@
 import PatientModel from '../models/patient.js';
 
 const Patient = {
-  fetch: async (req, res, next) => {
-
-  },
-
   create: async (req, res, next) => {
-    const { fullName, email, creatorId } = req.body;
+    const { patientName, email, age, creatorId } = req.body;
 
     const newPatient = new PatientModel({
-      fullName,
+      patientName,
       email,
+      age,
       creatorId,
     });
 
@@ -24,6 +21,14 @@ const Patient = {
     return res.status(201).send(patient);
   },
 
+  fetchOne: async (req, res, next) => {
+    
+  },
+
+  fetchAll: async (req, res, next) => {
+
+  }, 
+
   delete: async (req, res, next) => {
     const { id } = req.body;
     const patient = await PatientModel.findById(id).exec();
@@ -33,6 +38,9 @@ const Patient = {
         error: 'The patient with the given ID was not found.',
       });
     }
+
+    await group.deleteOne();
+    return res.status(204).send();
   },
 
   update: async (req, res, next) => {},
