@@ -1,11 +1,14 @@
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
+import { UserAddIcon } from "@heroicons/react/outline";
 
 const SignUp = () => {
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar />
       <div className="w-1/2 bg-red-100 rounded-2xl mt-20 mb-4 shadow-md px-8 py-4 flex flex-col items-center">
-        <div className="mb-4 w-full flex flex-col items-center">
+        <UserAddIcon className="w-20" />
+        <div className="mb-4 w-full flex flex-col items-center mt-4">
           <label
             className="w-1/2 text-gray-700 text-sm font-bold mb-2 text-left"
             htmlFor="name"
@@ -66,7 +69,10 @@ const SignUp = () => {
             Sign In
           </button>
           <p className="px-4 py-1">
-            Have an account? <button className=" text-blue-500">Sign In</button>
+            Have an account?{" "}
+            <Link to="/signin" className=" text-blue-500">
+              Sign In
+            </Link>
           </p>
         </div>
       </div>
