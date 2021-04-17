@@ -2,16 +2,16 @@ import { useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 
-const handleNewRecord = async (patientName, age, email, image, id) => {
-  console.log(id);
-  //   const data = await axios.post("http://localhost:5000/patients/create", {
-  //     patientName,
-  //     age,
-  //     email,
-  //     image,
-  //     id,
-  //   });
-  //   console.log(data);
+const handleNewRecord = async (patientName, age, email, image, creatorId) => {
+  console.log(creatorId);
+  const data = await axios.post("http://localhost:5000/patients/create", {
+    patientName,
+    age,
+    email,
+    image,
+    creatorId,
+  });
+  console.log(data);
 };
 
 const Create = (props) => {
