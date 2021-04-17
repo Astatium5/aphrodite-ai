@@ -68,7 +68,7 @@ const SignUp = () => {
           <button className="bg-button px-6 py-2 rounded-lg text-gray-100">
             Sign In
           </button>
-          <p className="px-4 py-1">
+          <p className="px-6 py-2">
             Have an account?{" "}
             <Link to="/signin" className=" text-blue-500">
               Sign In
