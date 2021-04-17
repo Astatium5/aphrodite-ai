@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+
+    mongoDB:
+        image: mongo
+        container_name: mongoDB
+        restart: unless-stopped
+
+    backend:
+        container_name: backend
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        depends_on:
+            - mongoDB
+        ports:
+            - 5000:5000
+        working_dir: /server
+        volumes:
+            - ./:/server
+        environment:
+          MONGO_URI: "mongodb://mongoDB/db"
