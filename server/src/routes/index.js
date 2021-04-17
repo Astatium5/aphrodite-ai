@@ -5,6 +5,6 @@ import patientRouter from './patient.js';
 const router = express.Router();
 
 router.use('/users', userRouter);
-router.use('/patients', patientRouter)
+router.use('/patients', patientRouter);
 
 export default router;

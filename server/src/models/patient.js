@@ -3,10 +3,11 @@ import mongoose from 'mongoose';
 const modelName = 'Patient';
 
 const PatientSchema = new mongoose.Schema({
-  URL: String,
+  fullName: String,
+  email: String,
+  photoURL: String,
   dateUploaded: { type: Date, default: new Date() },
-  cancerCategory: Number,
-
+  coordinates: Number
 });
 
 export default PatientSchema;
