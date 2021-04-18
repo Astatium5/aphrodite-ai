@@ -1,0 +1,27 @@
+{
+  "name": "aphrodite-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "concurrently": "^6.0.2",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "server": "cd server && npm run start",
+    "client": "cd client && npm run start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Astatium5/aphrodite-ai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Astatium5/aphrodite-ai/issues"
+  },
+  "homepage": "https://github.com/Astatium5/aphrodite-ai#readme"
+}
