@@ -5,6 +5,6 @@
 
 @layer base {
   body {
-    @apply bg-rose-light;
+    @apply bg-purple-light;
   }
 }

@@ -16,9 +16,20 @@ const handleNewRecord = async (
     patientName,
     age,
     email,
-    image,
     creatorId,
   });
+
+  const formData = new FormData();
+  formData.append("photo", image);
+  await axios.put(
+    `http://localhost:5000/patients/uploadImage/${res.data._id}`,
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
   history.push("/detail", res.data);
 };
 
@@ -33,7 +44,7 @@ const Create = (props) => {
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar page={props.location.pathname} />
-      <div className="w-11/12 md:w-1/2 bg-red-100 rounded-2xl mt-20 mb-4 shadow-md px-8 py-4 flex flex-col items-center">
+      <div className="w-11/12 md:w-1/2 bg-purple rounded-2xl mt-20 mb-4 shadow-md px-8 py-4 flex flex-col items-center">
         <div className="mb-4 w-full flex flex-col items-center mt-4">
           <div className="w-full flex justify-start">
             <ChevronLeftIcon
@@ -91,7 +102,7 @@ const Create = (props) => {
             type="file"
             onChange={(e) => {
               try {
-                setImage(URL.createObjectURL(e.target.files[0]));
+                setImage(e.target.files[0]);
               } catch (e) {
                 console.log(e);
               }
@@ -105,7 +116,7 @@ const Create = (props) => {
             Upload Image
           </button>
           <img
-            src={image}
+            src={image ? URL.createObjectURL(image) : null}
             alt="Preview"
             className={"w-42 h-32 " + (image === null ? "hidden" : "")}
           />
