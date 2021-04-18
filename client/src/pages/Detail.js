@@ -4,7 +4,7 @@ import { ChevronLeftIcon } from "@heroicons/react/outline";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import chart from "../assets/chart.png";
-
+import placeholder from "../assets/placeholder.jpg";
 const Detail = (props) => {
   const [data, setData] = useState(null);
   useEffect(() => {
@@ -38,9 +38,16 @@ const Detail = (props) => {
             </span>
           </h2>
         </div>
-        <h2 className="text-2xl text-gray-700">
-          Age: <span className="text-gray-500"> {data ? data.age : null}</span>
-        </h2>
+        <div className="flex flex-row space-x-8">
+          <h2 className="text-2xl text-gray-700">
+            Age:{" "}
+            <span className="text-gray-500"> {data ? data.age : null}</span>
+          </h2>
+          <h2 className="text-2xl text-gray-700">
+            Result:{" "}
+            <span className="text-gray-500"> {data ? data.result : null}</span>
+          </h2>
+        </div>
         <h2 className="text-2xl text-gray-700">
           Email:{" "}
           <span className="text-gray-500"> {data ? data.email : null}</span>
@@ -48,7 +55,7 @@ const Detail = (props) => {
 
         <img
           src={
-            data
+            data && data.photo
               ? `data:image/png;base64,${btoa(
                   String.fromCharCode(...new Uint8Array(data.photo.data))
                 )}`
@@ -57,7 +64,13 @@ const Detail = (props) => {
           alt="Uploaded"
           className="mt-8 w-96"
         />
-        <img src={chart} alt="Chart" className="mt-8  w-96" />
+        <img
+          src={chart}
+          alt="Chart"
+          className={
+            "mt-8  w-96 " + (data && data.photo ? "visible" : "hidden")
+          }
+        />
       </div>
     </div>
   );
