@@ -63,12 +63,11 @@ const Patient = {
       });
     }
 
-    // patients = JSON.stringify(patients);
     return res.status(200).send(patients);
   },
 
   delete: async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
     const patient = await PatientModel.findById(id).exec();
 
     if (!patient) {
@@ -85,7 +84,29 @@ const Patient = {
 
   },
 
-  uploadImage: async (req, res) => {},
+  uploadImage: async (req, res) => {
+    const { id } = req.params;
+
+    if (!req.file) {
+      res.status(415).send({
+        error: 'Could not find the file attached.',
+      });
+    }
+
+    const patient = await PatientModel.findById(id);
+
+    const imageBuffer = req.file.buffer;
+
+    try {
+      await patient.updateOne({ photo: imageBuffer }).exec();
+    } catch (err) {
+      return res.status(500).send({
+        error: 'Internal error',
+      });
+    }
+
+    return res.status(200).send(imageBuffer);
+  },
 };
 
 export default Patient;
