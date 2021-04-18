@@ -9,7 +9,7 @@ const PatientSchema = new mongoose.Schema({
   creatorId: String,
   dateUploaded: { type: Date, default: Date.now },
   photo: Buffer,
-  coordinates: Number,
+  result: String,
 });
 
 const Patient = mongoose.model(modelName, PatientSchema);

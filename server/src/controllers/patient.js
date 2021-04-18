@@ -80,10 +80,6 @@ const Patient = {
     return res.status(204).send();
   },
 
-  update: async (req, res) => {
-
-  },
-
   uploadImage: async (req, res) => {
     const { id } = req.params;
 
