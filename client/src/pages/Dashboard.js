@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, useRef } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -32,6 +32,7 @@ const Dashboard = (props) => {
       <Navbar page={props.location.pathname} />
       <Transition
         show={isOpen}
+        as={Fragment}
         enter="transition duration-100 ease-out"
         enterFrom="transform scale-95 opacity-0"
         enterTo="transform scale-100 opacity-100"
