@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { PlusIcon, ChevronDownIcon } from "@heroicons/react/outline";
+import { Dialog, Transition } from "@headlessui/react";
 
 const handleDeletion = async (_id) => {
   const data = await axios.delete(
@@ -14,6 +15,9 @@ const handleDeletion = async (_id) => {
 
 const Dashboard = (props) => {
   const [records, setRecords] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [clickedId, setClickedId] = useState("");
+
   useEffect(() => {
     const lc = JSON.parse(localStorage.token);
     axios
@@ -22,9 +26,76 @@ const Dashboard = (props) => {
       .catch((e) => console.log(e));
   }, []);
   const history = useHistory();
+
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar page={props.location.pathname} />
+      <Transition
+        show={isOpen}
+        enter="transition duration-100 ease-out"
+        enterFrom="transform scale-95 opacity-0"
+        enterTo="transform scale-100 opacity-100"
+        leave="transition duration-75 ease-out"
+        leaveFrom="transform scale-100 opacity-100"
+        leaveTo="transform scale-95 opacity-0"
+      >
+        <Dialog
+          open={isOpen}
+          static
+          onClose={() => setIsOpen(false)}
+          className="fixed z-10 inset-0 overflow-y-auto"
+        >
+          <div className="flex items-center justify-center min-h-screen">
+            <Dialog.Overlay className="fixed inset-0" />
+
+            <span
+              className="inline-block h-screen align-middle"
+              aria-hidden="true"
+            >
+              &#8203;
+            </span>
+
+            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <Dialog.Title
+                as="h3"
+                className="text-lg font-medium leading-6 text-gray-900"
+              >
+                Are you sure you want to delete this record?
+              </Dialog.Title>
+              <div className="mt-2">
+                <p className="text-sm text-gray-500">
+                  Deleting this record is irreversible!
+                </p>
+              </div>
+
+              <div className="mt-4 space-x-4">
+                <button
+                  type="button"
+                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                  onClick={() => {
+                    setIsOpen(false);
+                    handleDeletion(clickedId);
+                    setRecords(records.filter((rec) => rec._id !== clickedId));
+                  }}
+                >
+                  Yes, Delete
+                </button>
+
+                <button
+                  type="button"
+                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900"
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                >
+                  No, Keep
+                </button>
+              </div>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
       <div className="my-20 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="flex flex-row w-full px-4 mb-1">
@@ -76,7 +147,7 @@ const Dashboard = (props) => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {records.length > 0 ? (
-                  records.map((record, index) => (
+                  records.map((record) => (
                     <tr key={record._id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
@@ -114,10 +185,8 @@ const Dashboard = (props) => {
                           href="#"
                           className="text-indigo-600 hover:text-indigo-900"
                           onClick={() => {
-                            handleDeletion(record._id);
-                            setRecords(
-                              records.filter((rec) => rec._id !== record._id)
-                            );
+                            setIsOpen(true);
+                            setClickedId(record._id);
                           }}
                         >
                           Delete
