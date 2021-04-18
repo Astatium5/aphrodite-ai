@@ -17,7 +17,7 @@ const Navbar = ({ page }) => {
   }, []);
   const history = useHistory();
   return (
-    <div className="w-full h-16 bg-rose flex items-center shadow-lg">
+    <div className="w-full h-16 bg-purple flex items-center shadow-lg">
       <Link to={lc === undefined || lc === null ? "/" : "/dashboard"}>
         <img src={logo} alt="Aphrodite.ai" className="ml-4 w-16 pb-2" />
       </Link>

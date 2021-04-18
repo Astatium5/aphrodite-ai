@@ -20,7 +20,7 @@ const Detail = (props) => {
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar page={props.location.pathname} />
-      <div className="w-11/12 md:w-1/2 bg-red-100 rounded-2xl mt-20 mb-4 shadow-md px-8 py-4 flex flex-col items-center">
+      <div className="w-11/12 md:w-1/2 bg-purple rounded-2xl mt-20 mb-4 shadow-md px-8 py-4 flex flex-col items-center">
         <div className="flex flex-row  justify-center w-full">
           <ChevronLeftIcon
             className="w-8 cursor-pointer hover:text-gray-500 text-gray-700"

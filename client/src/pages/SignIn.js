@@ -40,7 +40,7 @@ const SignIn = () => {
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar />
-      <div className="w-1/2 bg-red-100 rounded-2xl mt-20 mb-4 shadow-md px-8 py-4 flex flex-col items-center">
+      <div className="w-1/2 bg-purple rounded-2xl mt-20 mb-4 shadow-md px-8 py-4 flex flex-col items-center">
         <LoginIcon className="w-20" />
         <div className="mb-4 w-full flex flex-col items-center mt-4">
           <label
