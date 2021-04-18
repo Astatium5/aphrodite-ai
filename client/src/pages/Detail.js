@@ -54,7 +54,7 @@ const Detail = (props) => {
               : null
           }
           alt="Uploaded"
-          className="mt-8"
+          className="mt-8 w-4/6"
         />
       </div>
     </div>
