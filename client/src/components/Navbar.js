@@ -7,7 +7,8 @@ import { Menu, Transition } from "@headlessui/react";
 const Navbar = ({ page }) => {
   const [lc, setLC] = useState({});
   useEffect(() => {
-    setLC(JSON.parse(localStorage.token));
+    if (localStorage.token === undefined) setLC(null);
+    else setLC(JSON.parse(localStorage.token));
   }, []);
 
   return (
