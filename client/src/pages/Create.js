@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router-dom";
+import { ChevronLeftIcon } from "@heroicons/react/outline";
 import axios from "axios";
 
 const handleNewRecord = async (
@@ -34,6 +35,12 @@ const Create = (props) => {
       <Navbar page={props.location.pathname} />
       <div className="w-11/12 md:w-1/2 bg-red-100 rounded-2xl mt-20 mb-4 shadow-md px-8 py-4 flex flex-col items-center">
         <div className="mb-4 w-full flex flex-col items-center mt-4">
+          <div className="w-full flex justify-start">
+            <ChevronLeftIcon
+              className="w-8 cursor-pointer hover:text-gray-500 text-gray-700"
+              onClick={() => history.push("/dashboard")}
+            />
+          </div>
           <label
             className="w-1/2 text-gray-700 text-sm font-bold mb-2 text-left"
             htmlFor="Patient name"

@@ -48,14 +48,7 @@ const Dashboard = (props) => {
           <div className="flex items-center justify-center min-h-screen">
             <Dialog.Overlay className="fixed inset-0" />
 
-            <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-
-            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-2xl">
               <Dialog.Title
                 as="h3"
                 className="text-lg font-medium leading-6 text-gray-900"
@@ -152,22 +145,22 @@ const Dashboard = (props) => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div>
-                            <div className="text-sm font-medium text-gray-900">
+                            <div className="text-sm font-medium text-gray-700">
                               {record.patientName}
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-gray-700">
                               {record.email}
                             </div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
+                        <div className="text-sm text-gray-700">
                           {record.age}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-gray-700">
                           {record.dateUploaded.split("T")[0]}
                         </span>
                       </td>
@@ -197,8 +190,8 @@ const Dashboard = (props) => {
                 ) : (
                   <tr className="w-full">
                     <td></td>
+                    <td className="text-sm text-gray-700">No Records Found</td>
                     <td></td>
-                    <td className="text-sm text-gray-500">No Records Found</td>
                     <td></td>
                     <td></td>
                     <td></td>
