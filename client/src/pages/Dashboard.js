@@ -90,7 +90,12 @@ const Dashboard = (props) => {
         </Dialog>
       </Transition>
 
-      <div className="my-20 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div
+        className={
+          "my-20 overflow-x-auto sm:-mx-6 lg:-mx-8 " +
+          (isOpen ? "filter blur" : "")
+        }
+      >
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="flex flex-row w-full px-4 mb-1">
             <span className="flex flex-1 flex-row justify-start text-gray-700">
@@ -129,6 +134,12 @@ const Dashboard = (props) => {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
+                    Result
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Date Created
                   </th>
                   <th scope="col" className="relative px-6 py-3">
@@ -158,6 +169,11 @@ const Dashboard = (props) => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-700">
                           {record.age}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-700">
+                          {record.result}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">

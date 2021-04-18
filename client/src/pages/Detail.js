@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { ChevronLeftIcon } from "@heroicons/react/outline";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import chart from "../assets/chart.png";
 
 const Detail = (props) => {
   const [data, setData] = useState(null);
@@ -54,8 +55,9 @@ const Detail = (props) => {
               : null
           }
           alt="Uploaded"
-          className="mt-8 w-4/6"
+          className="mt-8 w-96"
         />
+        <img src={chart} alt="Chart" className="mt-8  w-96" />
       </div>
     </div>
   );

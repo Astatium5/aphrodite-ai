@@ -5,8 +5,8 @@ import { UserCircleIcon, LogoutIcon } from "@heroicons/react/outline";
 import { Menu, Transition } from "@headlessui/react";
 
 const handleLogout = (history) => {
+  history.replace("/");
   localStorage.removeItem("token");
-  history.push("/");
 };
 
 const Navbar = ({ page }) => {
