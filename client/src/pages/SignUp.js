@@ -4,15 +4,30 @@ import { Link, useHistory } from "react-router-dom";
 import { UserAddIcon } from "@heroicons/react/outline";
 import axios from "axios";
 
-const handleSignUp = async (history, fullName, email, password) => {
+const handleSignUp = async (
+  history,
+  fullName,
+  email,
+  password,
+  setError,
+  setErrorMessage
+) => {
   try {
+    if (fullName === "" || email === "" || password === "") {
+      setError(true);
+      setErrorMessage(
+        "The name, email and/or password you specified are empty."
+      );
+      return;
+    }
     const res = await axios.post("http://localhost:5000/users/register", {
       fullName,
       email,
       password,
     });
     console.log(res.data);
-    history.push("/dashboard", res.data);
+    localStorage.setItem("token", JSON.stringify(res.data));
+    history.push("/dashboard");
   } catch (e) {
     console.log(e);
   }
@@ -23,6 +38,8 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   return (
     <div className="flex flex-col items-center w-screen h-screen">
@@ -67,17 +84,36 @@ const SignUp = () => {
             Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={
+              "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline " +
+              (error ? "border-red-600" : "")
+            }
             id="password"
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value[0])}
           />
+          <p
+            className={
+              "text-sm text-red-600 " + (error ? "visible" : "invisible")
+            }
+          >
+            {errorMessage}
+          </p>
         </div>
         <div className="flex flex-row space-x-8 mt-4">
           <button
             className="bg-button px-6 py-2 rounded-lg text-gray-100"
-            onClick={() => handleSignUp(history, name, email, password)}
+            onClick={() =>
+              handleSignUp(
+                history,
+                name,
+                email,
+                password,
+                setError,
+                setErrorMessage
+              )
+            }
           >
             Sign Up
           </button>

@@ -4,16 +4,30 @@ import { Link, useHistory } from "react-router-dom";
 import { LoginIcon } from "@heroicons/react/outline";
 import axios from "axios";
 
-const handleSignIn = async (history, email, password) => {
+const handleSignIn = async (
+  history,
+  email,
+  password,
+  setError,
+  setErrorMessage
+) => {
   try {
+    if (email === "" || password === "") {
+      setError(true);
+      setErrorMessage("The email and/or password you specified are empty.");
+      return;
+    }
     const res = await axios.post("http://localhost:5000/users/login", {
       email,
       password,
     });
     console.log(res.data);
-    history.push("/dashboard", res.data);
+    localStorage.setItem("token", JSON.stringify(res.data));
+    history.push("/dashboard");
   } catch (e) {
     console.log(e);
+    setError(true);
+    setErrorMessage("The email and/or password you specified are not correct.");
   }
 };
 
@@ -21,6 +35,8 @@ const SignIn = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar />
@@ -49,17 +65,29 @@ const SignIn = () => {
             Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={
+              "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline " +
+              (error ? "border-red-600" : "")
+            }
             id="password"
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <p
+            className={
+              "text-sm text-red-600 " + (error ? "visible" : "invisible")
+            }
+          >
+            {errorMessage}
+          </p>
         </div>
         <div className="flex flex-row space-x-8 mt-4">
           <button
             className="bg-button px-6 py-2 rounded-lg text-gray-100"
-            onClick={() => handleSignIn(history, email, password)}
+            onClick={() =>
+              handleSignIn(history, email, password, setError, setErrorMessage)
+            }
           >
             Sign In
           </button>

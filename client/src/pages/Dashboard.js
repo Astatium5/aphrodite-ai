@@ -1,29 +1,18 @@
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import { PlusIcon, ChevronDownIcon } from "@heroicons/react/outline";
 
 const Dashboard = (props) => {
-  const people = [
-    {
-      name: "Abraham Hernandez",
-      age: "86",
-      email: "h.abraham@outlook.com",
-      dateCreated: "04/17/2021",
-    },
-    {
-      name: "Abraham Hernandez",
-      age: "86",
-      email: "h.abraham@outlook2.com",
-      dateCreated: "04/17/2021",
-    },
-    {
-      name: "Abraham Hernandez",
-      age: "86",
-      email: "h.abraham@outlook3.com",
-      dateCreated: "04/17/2021",
-    },
-  ];
-  // console.log(props.location.state);
+  const [records, setRecords] = useState([]);
+  useEffect(() => {
+    const lc = JSON.parse(localStorage.token);
+    axios
+      .get(`http://localhost:5000/patients/fetchAll/${lc._id}`)
+      .then((res) => setRecords(res.data.reverse()))
+      .catch((e) => console.log(e));
+  }, []);
   const history = useHistory();
   return (
     <div className="flex flex-col items-center w-screen h-screen">
@@ -32,12 +21,11 @@ const Dashboard = (props) => {
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="flex flex-row w-full px-4 mb-1">
             <span className="flex flex-1 flex-row justify-start text-gray-700">
-              <div className="inline-flex flex-row hover:text-gray-400 cursor-pointer">
-                <p
-                  onClick={() => history.push("/create", props.location.state)}
-                >
-                  Add New
-                </p>
+              <div
+                className="inline-flex flex-row hover:text-gray-400 cursor-pointer"
+                onClick={() => history.push("/create")}
+              >
+                <p>Add New</p>
                 <PlusIcon className="w-4" />
               </div>
             </span>
@@ -79,35 +67,36 @@ const Dashboard = (props) => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {people.length > 0 ? (
-                  people.map((person) => (
-                    <tr key={person.email}>
+                {records.length > 0 ? (
+                  records.map((record) => (
+                    <tr key={record._id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div>
                             <div className="text-sm font-medium text-gray-900">
-                              {person.name}
+                              {record.patientName}
                             </div>
                             <div className="text-sm text-gray-500">
-                              {person.email}
+                              {record.email}
                             </div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
-                          {person.age}
+                          {record.age}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                          {person.dateCreated}
+                          {record.dateUploaded.split("T")[0]}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <button
                           href="#"
                           className="text-indigo-600 hover:text-indigo-900"
+                          onClick={() => history.push("/detail", record)}
                         >
                           View
                         </button>

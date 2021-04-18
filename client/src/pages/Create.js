@@ -1,17 +1,24 @@
 import { useState, useRef } from "react";
 import Navbar from "../components/Navbar";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-const handleNewRecord = async (patientName, age, email, image, creatorId) => {
-  console.log(creatorId);
-  const data = await axios.post("http://localhost:5000/patients/create", {
+const handleNewRecord = async (
+  history,
+  patientName,
+  age,
+  email,
+  image,
+  creatorId
+) => {
+  const res = await axios.post("http://localhost:5000/patients/create", {
     patientName,
     age,
     email,
     image,
     creatorId,
   });
-  console.log(data);
+  history.push("/detail", res.data);
 };
 
 const Create = (props) => {
@@ -20,6 +27,8 @@ const Create = (props) => {
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(null);
   const imageUpRef = useRef(null);
+  const history = useHistory();
+  const lc = JSON.parse(localStorage.token);
   return (
     <div className="flex flex-col items-center w-screen h-screen">
       <Navbar page={props.location.pathname} />
@@ -90,19 +99,14 @@ const Create = (props) => {
           </button>
           <img
             src={image}
+            alt="Preview"
             className={"w-42 h-32 " + (image === null ? "hidden" : "")}
           />
         </div>
         <button
           className="bg-button px-6 py-2 rounded-lg text-gray-100 w-1/2 mt-4"
           onClick={() =>
-            handleNewRecord(
-              patientName,
-              age,
-              email,
-              image,
-              props.location.state._id
-            )
+            handleNewRecord(history, patientName, age, email, image, lc._id)
           }
         >
           Create New Record
