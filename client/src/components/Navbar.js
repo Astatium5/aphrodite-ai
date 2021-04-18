@@ -1,8 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
 import logo from "../assets/navbar_logo.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { UserCircleIcon, LogoutIcon } from "@heroicons/react/outline";
 import { Menu, Transition } from "@headlessui/react";
+
+const handleLogout = (history) => {
+  localStorage.removeItem("token");
+  history.push("/");
+};
 
 const Navbar = ({ page }) => {
   const [lc, setLC] = useState({});
@@ -10,7 +15,7 @@ const Navbar = ({ page }) => {
     if (localStorage.token === undefined) setLC(null);
     else setLC(JSON.parse(localStorage.token));
   }, []);
-
+  const history = useHistory();
   return (
     <div className="w-full h-16 bg-rose flex items-center shadow-lg">
       <Link to={lc === undefined || lc === null ? "/" : "/dashboard"}>
@@ -51,6 +56,7 @@ const Navbar = ({ page }) => {
                             className={`${
                               active ? "text-gray-600" : "text-gray-800"
                             } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                            onClick={() => handleLogout(history)}
                           >
                             <LogoutIcon
                               className="w-5 h-5 mr-2"
