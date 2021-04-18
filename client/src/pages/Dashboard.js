@@ -4,6 +4,14 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { PlusIcon, ChevronDownIcon } from "@heroicons/react/outline";
 
+const handleDeletion = async (_id) => {
+  const data = await axios.delete(
+    `http://localhost:5000/patients/delete/${_id}`
+  );
+
+  console.log(data);
+};
+
 const Dashboard = (props) => {
   const [records, setRecords] = useState([]);
   useEffect(() => {
@@ -68,7 +76,7 @@ const Dashboard = (props) => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {records.length > 0 ? (
-                  records.map((record) => (
+                  records.map((record, index) => (
                     <tr key={record._id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
@@ -105,6 +113,12 @@ const Dashboard = (props) => {
                         <button
                           href="#"
                           className="text-indigo-600 hover:text-indigo-900"
+                          onClick={() => {
+                            handleDeletion(record._id);
+                            setRecords(
+                              records.filter((rec) => rec._id !== record._id)
+                            );
+                          }}
                         >
                           Delete
                         </button>
