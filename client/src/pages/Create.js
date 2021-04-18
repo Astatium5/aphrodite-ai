@@ -16,9 +16,20 @@ const handleNewRecord = async (
     patientName,
     age,
     email,
-    image,
     creatorId,
   });
+
+  const formData = new FormData();
+  formData.append("photo", image);
+  await axios.put(
+    `http://localhost:5000/patients/uploadImage/${res.data._id}`,
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
   history.push("/detail", res.data);
 };
 
@@ -91,7 +102,7 @@ const Create = (props) => {
             type="file"
             onChange={(e) => {
               try {
-                setImage(URL.createObjectURL(e.target.files[0]));
+                setImage(e.target.files[0]);
               } catch (e) {
                 console.log(e);
               }
@@ -105,7 +116,7 @@ const Create = (props) => {
             Upload Image
           </button>
           <img
-            src={image}
+            src={image ? URL.createObjectURL(image) : null}
             alt="Preview"
             className={"w-42 h-32 " + (image === null ? "hidden" : "")}
           />
