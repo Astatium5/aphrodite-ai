@@ -1,5 +1,6 @@
 ## Aphrodite.ai
-AI to identify cancerous cells on histological images
+AI to identify cancerous cells on histological images  
+CatHacks VII 3rd place winner
 ## Inspiration
 Prior to the event we have learned that cancer is the second most common cause of death in United States, according to CDC. Particularly, WHO reported 570,000 women* diagnosed with cervical cancer# and 311,000 deaths from this disease in 2018. However, cervical cancer is completely preventable if caught on pre-cancerous or early stages. Pap smear is a gynecological test, which allows to detect HPV infection (leading cause of cervical cancer), pre-cancerous and cancerous lesions of the cervix. This test is considered a “gold standard” for cervical cancer detection and is used worldwide for routine screening.  According to recent data, Pap smears have single handedly reduced incidence of cervical cancer by 75% over the past 60 years in USA. Although Pap tests allowed to reduce incidences of cervical cancer, there is still room for improvement as this field as the disease is completely preventable and with improvement of screening technologies cervical cancer can be completely eliminated. Particularly, development of automated Pap smear analysis would allow to interpret more smears in reduced time as well as decrease workload of doctors and lab personnel. 
 ## What it does
